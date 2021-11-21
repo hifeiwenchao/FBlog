@@ -1,0 +1,137 @@
+{% extends "blog/base.html" %}
+
+{% block title %}
+    <title>{{ blog.title }}</title>
+{% endblock %}
+
+{% block meta %}
+    <meta name="keywords"
+          content="{{ blog.title }},{% for tag in blog.tag.all %}{{ tag }},{% endfor %}{{ blog.category }}"/>
+    <meta name="description" content="{{ blog.digest|safe }}"/>
+{% endblock %}
+
+{% block css %}
+    <link rel="stylesheet" href="/static/css/markdown.css">
+    <link rel="stylesheet" href="/static/prism/prism.css">
+{% endblock %}
+
+{% block content %}
+    <div class="mysection content">
+        <article>
+            <h3 class="arc-title index-title">{{ blog.title }} </h3>
+            <div class="post-line bg-color">
+                <ul>
+                    <li><a title="{{ blog.author }}发表于{{ blog.date_time }}"><i class="el-time"></i>
+                        <time>{{ blog.date_time }}</time>
+                    </a></li>
+                    <li><a href="#"><i class="el-user"></i>{{ blog.author }}</a></li>
+                    <li><a href="#Coon" title="转到评论"><i class="el-comment"></i>{{ blog.comment }}条</a></li>
+                    <li><a title="已有 {{ blog.view }} 次浏览"><i class="el-eye-open"></i>{{ blog.view }}</a></li>
+                </ul>
+            </div>
+
+            <!--文章正文-->
+            <div class="article-content bg-color markdown-body">
+                <div class="post-content" style="padding: 10px 20px 20px 10px">
+                    <div class="toc" style="text-indent: 5px; font-size: 16px; margin-top: 15px">
+                        <p>▶ 目录</p>
+                        {{ toc|safe }}
+                    </div>
+                    <div class="code text_dark">
+                        {{ blog.content|safe }}
+                    </div>
+                </div>
+            </div>
+
+            <!--分享-->
+            <div class="article-fx"><a class="fx-btn img-circle" href="javascript:;">分享</a>
+                <div class="bd-fx arc-bdfx">
+                    <i class="el-remove fx-close"></i>
+                    <ul class="bdsharebuttonbox">
+                        <li><a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a></li>
+                        <li><a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a></li>
+                        <li><a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间"></a></li>
+                        <li><a href="#" class="bds_tieba" data-cmd="tieba" title="分享到百度贴吧"></a></li>
+                    </ul>
+                    <script>
+                        window._bd_share_config = {
+                            "common": {
+                                "bdSnsKey": {},
+                                "bdText": "",
+                                "bdMini": "2",
+                                "bdMiniList": false,
+                                "bdPic": "",
+                                "bdStyle": "1",
+                                "bdSize": "32"
+                            }, "share": {}
+                        };
+                        with (document) 0[(getElementsByTagName('head')[0] || body).appendChild(createElement('script')).src = '/static/api/js/share.js?v=89860593.js?cdnversion=' + ~(-new Date() / 36e5)];
+                    </script>
+                </div>
+            </div>
+
+            <hr>
+
+            <!--标签-->
+            <div class="article_tag">
+                <ul>
+                    <li><a href="{% url "blog:category" blog.category %}"
+                           title="分类：{{ blog.category }}">{{ blog.category }}</a></li>
+                    {% for tag in blog.tag.all %}
+                        <li><a href="{% url "blog:tag" name=tag.tag_name %}"
+                               title="标签：{{ tag.tag_name }} ">{{ tag.tag_name }}</a>&nbsp;
+                        </li>
+                    {% endfor %}
+                </ul>
+            </div>
+            <hr>
+        </article>
+
+        <!--评论表单-->
+        {% include "blog/message.html" %}
+
+        {# 评论数 #}
+        <div class="comment-num">
+            <span style="font-weight: 600;font-size: 1.25em;">{{ comments.count }}</span>
+            <span>&nbsp;评论</span>
+        </div>
+        {# 评论内容 #}
+        <div class="comments">
+            <ul class="comment-list">
+                {% for comment in comments %}
+                    <li class="comment-item">
+                        <a href="javascript:void(0);">
+                            <img class="comment-avatar" src="/static/images/icon/user.gif" alt="">
+                        </a>
+                        <span class="comment-author">{{ comment.user_name }}</span>
+                        <div class="comment-meta">{{ comment.create_time }}</div>
+                        <div class="comment-content">
+                            <span>{{ comment.comment }}</span>
+                        </div>
+                        <div class="reply">
+                            <a class="comment-reply-link" title="debugging...未启用">回复</a>
+                        </div>
+                    </li>
+                {% empty %}
+                    <div style="margin-bottom: 99px; margin-top: 30px; color: rgb(188 188 188);">
+                        <span style="margin-left: 26px">🙈 这篇文章还没有评论哟，快来写下第一条评论吧...</span>
+                    </div>
+                {% endfor %}
+            </ul>
+        </div>
+
+    </div>
+{% endblock %}
+
+{% include 'blog/component/auto_push_baidu.html' %}
+
+{% block js %}
+    <script src="/static/js/jquery.2.1.4.min.js"></script>
+    <script src="/static/prism/prism.js" charset="utf-8"></script>
+    <script src="/static/prism/clipboard.min.js"></script>
+    <script async type="text/javascript"
+            src="http://cdjs.cloudflare.com/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/x-mathjax-config">
+        MathJax.Hub.Config({tex2jax: {inlineMath: [['$', '$']]},messageStyle: "none"});
+    </script>
+{% endblock %}

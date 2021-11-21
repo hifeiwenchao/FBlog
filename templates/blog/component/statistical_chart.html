@@ -1,0 +1,165 @@
+<style type="text/css">
+    #posts-chart,
+    #categories-chart,
+    #tags-chart {
+        width: 100%;
+        height: 300px;
+        margin: 3rem auto;
+        padding: 0.5rem;
+    }
+</style>
+
+<div class="aboutme">
+    <p style="text-align: center;border-top: 1px solid #0C0C0C; margin-top: 30px; padding: 30px 0 0 0; font-size: 25px;">🕸📈文章统计📊👀</p>
+</div>
+
+<div class="row">
+    <div class="chart col s12 m6 l4 aos-init aos-animate" data-aos="zoom-in-up">
+        <div id="posts-chart" style="width: 320px; height: 286px">
+        </div>
+    </div>
+
+    <div class="chart col s12 m6 l4 aos-init aos-animate" data-aos="zoom-in-up">
+        <div id="categories-chart" style="width: 320px; height: 286px">
+        </div>
+    </div>
+
+    <div class="chart col s12 m6 l4 aos-init aos-animate" data-aos="zoom-in-up">
+        <div id="tags-chart" style="width: 320px; height: 286px">
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript" src="/static/js/echarts.min.js"></script>
+<script>
+    let postsChart = echarts.init(document.getElementById('posts-chart'));
+    let categoriesChart = echarts.init(document.getElementById('categories-chart'));
+    let tagsChart = echarts.init(document.getElementById('tags-chart'));
+
+
+    let postsOption = {
+        title: {
+            text: '文章发布统计图',
+            top: 'auto',
+            x: 'center'
+        },
+        tooltip: {
+            trigger: 'axis'
+        },
+        xAxis: {
+            type: 'category',
+            data: {{ date_list | safe }}
+        },
+        yAxis: {
+            type: 'value',
+        },
+        series: [
+            {
+                name: '文章篇数',
+                type: 'line',
+                color: ['#6772e5'],
+                data: {{ value_list | safe }},
+                markPoint: {
+                    symbolSize: 45,
+                    color: ['#fa755a', '#3ecf8e', '#82d3f4'],
+                    data: [{
+                        type: 'max',
+                        itemStyle: {color: ['#3ecf8e']},
+                        name: '最大值'
+                    }, {
+                        type: 'min',
+                        itemStyle: {color: ['#fa755a']},
+                        name: '最小值'
+                    }]
+                },
+                markLine: {
+                    itemStyle: {color: ['#ab47bc']},
+                    data: [
+                        {type: 'average', name: '平均值'}
+                    ]
+                }
+            }
+        ]
+    };
+
+
+    let categoriesOption = {
+        title: {
+            text: '文章分类统计图',
+            top: 'auto',
+            x: 'center'
+        },
+        tooltip: {
+            trigger: 'item',
+            formatter: "{a} <br/>{b} : {c} ({d}%)"
+        },
+        series: [
+            {
+                name: '分类',
+                type: 'pie',
+                radius: '50%',
+                color: ['#6772e5', '#ff9e0f', '#fa755a', '#3ecf8e', '#82d3f4', '#ab47bc', '#525f7f', '#f51c47', '#26A69A'],
+                data: [{% for category in categories %}{"name": "{{ category.name }}","value":
+                        {{ category.article_set.all | length  }}},{% endfor %}],
+                itemStyle: {
+                    emphasis: {
+                        shadowBlur: 10,
+                        shadowOffsetX: 0,
+                        shadowColor: 'rgba(0, 0, 0, 0.5)'
+                    }
+                }
+            }
+        ]
+    };
+
+
+    let tagsOption = {
+        title: {
+            text: 'TOP10 标签统计图',
+            top: 'auto',
+            x: 'center'
+        },
+        tooltip: {},
+        xAxis: [
+            {
+                type: 'category',
+                data: {{ top10_tags | safe }}
+            }
+        ],
+        yAxis: [
+            {
+                type: 'value'
+            }
+        ],
+        series: [
+            {
+                type: 'bar',
+                color: ['#82d3f4'],
+                data: {{ top10_tags_values | safe }},
+                markPoint: {
+                    symbolSize: 45,
+                    data: [{
+                        type: 'max',
+                        itemStyle: {color: ['#3ecf8e']},
+                        name: '最大值'
+                    }, {
+                        type: 'min',
+                        itemStyle: {color: ['#fa755a']},
+                        name: '最小值'
+                    }],
+                },
+                markLine: {
+                    itemStyle: {color: ['#ab47bc']},
+                    data: [
+                        {type: 'average', name: '平均值'}
+                    ]
+                }
+            }
+        ]
+    };
+
+    // render the charts
+    postsChart.setOption(postsOption);
+    categoriesChart.setOption(categoriesOption);
+    tagsChart.setOption(tagsOption);
+</script>

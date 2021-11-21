@@ -1,0 +1,8 @@
+User-agent: *
+Allow: /blog
+Allow: /blog/list/
+Allow: /blog/tag/
+Allow: /blog/category/
+Allow: /blog/archive/
+Allow: /blog/getComment/
+Sitemap: http://www.feiwenchao.me/sitemap.xml

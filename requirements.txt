@@ -1,0 +1,10 @@
+pymysql
+Django==3.2.4
+Pillow
+django-import-export==2.6.1
+django-mdeditor
+django-simpleui==2021.11.5
+markdown
+django-modeladmin-reorder
+django-redis
+django-simple-captcha

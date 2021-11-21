@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset
+    xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
+       http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd"
+>
+
+<url>
+ <loc>https://www.feiwenchao.me/blog/message</loc>
+ <priority>0.3</priority>
+ <lastmod>2021-07-11</lastmod>
+ <changefreq>daily</changefreq>
+</url>
+
+<url>
+ <loc>https://www.feiwenchao.me/blog/tag/centos7</loc>
+ <priority>0.3</priority>
+ <lastmod>2021-07-11</lastmod>
+ <changefreq>daily</changefreq>
+</url>
+
+<url>
+ <loc>https://www.feiwenchao.me/blog/list</loc>
+ <priority>0.3</priority>
+ <lastmod>2021-07-11</lastmod>
+ <changefreq>daily</changefreq>
+</url>
+
+<url>
+ <loc>https://www.feiwenchao.me/blog/tag/selenium</loc>
+ <priority>0.3</priority>
+ <lastmod>2021-07-11</lastmod>
+ <changefreq>daily</changefreq>
+</url>
+
+<url>
+ <loc>https://www.feiwenchao.me/blog/category/python3</loc>
+ <priority>0.3</priority>
+ <lastmod>2021-07-11</lastmod>
+ <changefreq>daily</changefreq>
+</url>
+
+<url>
+ <loc>https://www.feiwenchao.me/</loc>
+ <priority>0.3</priority>
+ <lastmod>2021-07-11</lastmod>
+ <changefreq>daily</changefreq>
+</url>
+
+<url>
+ <loc>https://www.feiwenchao.me/blog/archive</loc>
+ <priority>0.3</priority>
+ <lastmod>2021-07-11</lastmod>
+ <changefreq>daily</changefreq>
+</url>
+
+<url>
+ <loc>https://www.feiwenchao.me/blog/tag/centos8</loc>
+ <priority>0.3</priority>
+ <lastmod>2021-07-11</lastmod>
+ <changefreq>daily</changefreq>
+</url>
+
+<url>
+ <loc>https://www.feiwenchao.me/blog/tag/%E7%88%AC%E8%99%AB</loc>
+ <priority>0.3</priority>
+ <lastmod>2021-07-11</lastmod>
+ <changefreq>daily</changefreq>
+</url>
+
+<url>
+ <loc>https://www.feiwenchao.me/blog/tag/springboot</loc>
+ <priority>0.3</priority>
+ <lastmod>2021-07-11</lastmod>
+ <changefreq>daily</changefreq>
+</url>
+
+<url>
+ <loc>https://www.feiwenchao.me/blog/tag/git</loc>
+ <priority>0.3</priority>
+ <lastmod>2021-07-11</lastmod>
+ <changefreq>daily</changefreq>
+</url>
+
+<url>
+ <loc>https://www.feiwenchao.me/blog/tag/ubuntu20.4</loc>
+ <priority>0.3</priority>
+ <lastmod>2021-07-11</lastmod>
+ <changefreq>daily</changefreq>
+</url>
+
+<url>
+ <loc>https://www.feiwenchao.me/blog/detail/</loc>
+ <priority>0.3</priority>
+ <lastmod>2021-07-11</lastmod>
+ <changefreq>daily</changefreq>
+</url>
+
+<url>
+ <loc>https://www.feiwenchao.me/blog</loc>
+ <priority>0.3</priority>
+ <lastmod>2021-07-11</lastmod>
+ <changefreq>daily</changefreq>
+</url>
+
+<url>
+ <loc>https://www.feiwenchao.me/blog/about</loc>
+ <priority>0.3</priority>
+ <lastmod>2021-07-11</lastmod>
+ <changefreq>daily</changefreq>
+</url>
+
+<url>
+ <loc>https://www.feiwenchao.me/blog/tag/python3</loc>
+ <priority>0.3</priority>
+ <lastmod>2021-07-11</lastmod>
+ <changefreq>daily</changefreq>
+</url>
+
+</urlset>

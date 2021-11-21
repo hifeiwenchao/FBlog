@@ -1,0 +1,120 @@
+<footer>
+    <!--底部导航-->
+    <div class="foot-nav">
+        <p class="copy-right">
+            <span>CopyRight ©2021-2022
+                <a href="{{ website_author_link }}"><strong>{{ main_website }}</strong></a>&nbsp;|&nbsp;
+                <a href="https://docs.djangoproject.com/zh-hans/3.2/"><strong>Django</strong></a>&nbsp;|&nbsp;
+                <a href="{% url 'blog:rss' %}"><i class="el el-rss" style="color: white"></i><strong>Rss</strong></a>&nbsp;/
+                <a href="{% url 'blog:atom' %}"><strong>Atom</strong></a>
+            </span>
+        </p>
+
+        <div id="toTop">Back to Top</div>
+
+        <p id="runtimeSpan"></p>
+        <script async type="text/javascript">
+            function showRuntime() {
+                window.setTimeout("showRuntime()", 1000);
+                var rantime = '2013/6/26 00:00:00:000'
+                var startTime = new Date(rantime);
+                var nowTime = new Date();
+                var timestamp = (nowTime.getTime() - startTime.getTime());
+                var oneDayMilliseconds = 24 * 60 * 60 * 1000;
+                var totalDaysTmp = timestamp / oneDayMilliseconds;
+                var totalDays = Math.floor(totalDaysTmp);
+                var yuHoursTmp = (totalDaysTmp - totalDays) * 24;
+                var yuHours = Math.floor(yuHoursTmp);
+                var yuMinutesTmp = (yuHoursTmp - yuHours) * 60;
+                var yuMinutes = Math.floor((yuHoursTmp - yuHours) * 60);
+                var yuSeconds = Math.floor((yuMinutesTmp - yuMinutes) * 60);
+                runtimeSpan.innerHTML = "本站已勉强运行: " + totalDays + "天" + yuHours + "小时" + yuMinutes + "分" + yuSeconds + "秒";
+            }
+
+            showRuntime();
+        </script>
+
+        <script src="https://pv.sohu.com/cityjson?ie=utf-8"></script>
+        <script async type="text/javascript">
+            var getOSAndBrowser = function () {
+                var os = navigator.platform;
+                var userAgent = navigator.userAgent;
+                var info = "";
+                var tempArray = "";
+                if (os.indexOf("Win") > -1) {
+                    if (userAgent.indexOf("Windows NT 5.0") > -1) {
+                        info += "Win2000"
+                    } else if (userAgent.indexOf("Windows NT 5.1") > -1) {
+                        info += "WinXP"
+                    } else if (userAgent.indexOf("Windows NT 5.2") > -1) {
+                        info += "Win2003"
+                    } else if (userAgent.indexOf("Windows NT 6.0") > -1) {
+                        info += "WindowsVista"
+                    } else if (userAgent.indexOf("Windows NT 6.1") > -1 || userAgent.indexOf("Windows 7") > -1) {
+                        info += "Win7"
+                    } else if (userAgent.indexOf("Windows NT 6.2") > -1 || userAgent.indexOf("Windows 8") > -1) {
+                        info += "Win8"
+                    } else if (userAgent.indexOf("Windows NT 6.3") > -1 || userAgent.indexOf("Windows 8.1") > -1) {
+                        info += "Win8.1"
+                    } else if (userAgent.indexOf("Windows NT 10.0") > -1 || userAgent.indexOf("Windows 10") > -1) {
+                        info += "Win10"
+                    } else {
+                        info += "Other"
+                    }
+                } else if (os.indexOf("Mac") > -1) {
+                    info += "Mac"
+                } else if (os.indexOf("X11") > -1) {
+                    info += "Unix"
+                } else if (os.indexOf("Linux") > -1) {
+                    info += "Linux"
+                } else {
+                    info += "Other"
+                }
+                info += "/";
+                var isOpera = userAgent.indexOf("Opera") > -1;
+                var isIE = userAgent.indexOf("compatible") > -1 && userAgent.indexOf("MSIE") > -1 && !isOpera;
+                var isEdge = userAgent.toLowerCase().indexOf("edge") > -1 && !isIE;
+                var isIE11 = (userAgent.toLowerCase().indexOf("trident") > -1 && userAgent.indexOf("rv") > -1);
+                if (/[Ff]irefox(\/\d+\.\d+)/.test(userAgent)) {
+                    tempArray = /([Ff]irefox)\/(\d+\.\d+)/.exec(userAgent);
+                    info += tempArray[1] + tempArray[2]
+                } else if (isIE) {
+                    var version = "";
+                    var reIE = new RegExp("MSIE (\\d+\\.\\d+);");
+                    reIE.test(userAgent);
+                    var fIEVersion = parseFloat(RegExp["$1"]);
+                    if (fIEVersion === 7) {
+                        version = "IE7"
+                    } else if (fIEVersion === 8) {
+                        version = "IE8"
+                    } else if (fIEVersion === 9) {
+                        version = "IE9"
+                    } else if (fIEVersion === 10) {
+                        version = "IE10"
+                    } else {
+                        version = "0"
+                    }
+                    info += version
+                } else if (isEdge) {
+                    info += "Edge"
+                } else if (isIE11) {
+                    info += "IE11"
+                } else if (/[Cc]hrome\/\d+/.test(userAgent)) {
+                    tempArray = /([Cc]hrome)\/(\d+)/.exec(userAgent);
+                    info += tempArray[1] + tempArray[2]
+                } else if (/[Vv]ersion\/\d+\.\d+\.\d+(\.\d)* *[Ss]afari/.test(userAgent)) {
+                    tempArray = /[Vv]ersion\/(\d+\.\d+\.\d+)(\.\d)* *([Ss]afari)/.exec(userAgent);
+                    info += tempArray[3] + tempArray[1]
+                } else if (/[Oo]pera.+[Vv]ersion\/\d+\.\d+/.test(userAgent)) {
+                    tempArray = /([Oo]pera).+[Vv]ersion\/(\d+)\.\d+/.exec(userAgent);
+                    info += tempArray[1] + tempArray[2]
+                } else {
+                    info += "unknown"
+                }
+                return info
+            };
+            document.write("欢迎来自 " + returnCitySN["cname"] + " 的朋友" + ", 您的IP是: " + returnCitySN["cip"] + ", 您使用的是: " + getOSAndBrowser());
+        </script>
+    </div>
+
+</footer>

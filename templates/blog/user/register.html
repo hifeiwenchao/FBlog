@@ -1,0 +1,101 @@
+{% extends 'blog/base.html' %}
+
+{% block title %}
+    <title>注册</title>
+{% endblock %}
+
+{% block css %}
+    <link rel="stylesheet" href="/static/css/mobi.min.css">
+{% endblock %}
+
+{% block content %}
+    <div class="flex-center mysection">
+        <div class="container">
+            <div class="flex-center">
+                <div class="unit-1-2 unit-1-on-mobile">
+                    <h3 style="text-align: center">注册</h3>
+                    <form class="form" action="{% url 'blog:register' %}" method="post">
+                        {# 错误信息提示 #}
+                        {% if messages %}
+                            <ul class="messages">
+                                {% for message in messages %}
+                                    <li {% if message.tags %} class="{{ message.tags }}" {% endif %}>
+                                        {{ message.message }}
+                                    </li>
+                                {% endfor %}
+                            </ul>
+                        {% endif %}
+                        {% csrf_token %}
+                        <!-- 账号 -->
+                        <div class="form-group col-md-4">
+                            {{ register_form.username.label_tag }}
+                            {{ register_form.username }}
+                        </div>
+                        <!-- 密码 -->
+                        <div class="form-group col-md-4">
+                            {{ register_form.password1.label_tag }}
+                            {{ register_form.password1 }}
+                        </div>
+                        <!-- 密码检验 -->
+                        <div class="form-group col-md-4">
+                            {{ register_form.password2.label_tag }}
+                            {{ register_form.password2 }}
+                        </div>
+                        <!-- 邮箱 -->
+                        <div class="form-group col-md-4">
+                            {{ register_form.email.label_tag }}
+                            {{ register_form.email }}
+                        </div>
+                        <!-- 验证码 -->
+                        <div class="form-group">
+                            {{ register_form.captcha.errors }}
+                            {{ register_form.captcha.label_tag }}
+                            {{ register_form.captcha }}
+                        </div>
+                        <button type="submit" class="btn btn-primary btn-block">注册</button>
+                    </form>
+                    <div class="flex-center top-gap text-small">
+                        <a href="{% url 'blog:login' %}" style="color: #267fd9">已有账号登录</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="http://libs.baidu.com/jquery/2.1.4/jquery.min.js"></script>
+    <script>
+        $(function () {
+            // Add refresh button after field (this can be done in the template as well)
+            $('img.captcha').after(
+                $('<a class="captcha-refresh" style="color: #267fd9; text-decoration: underline; margin-left: 16px">看不清</a>')
+            );
+
+            $('.captcha-refresh').click(function () {
+                $.getJSON("/captcha/refresh/", function (result) {
+                    $('.captcha').attr('src', result['image_url']);
+                    $('#id_captcha_0').val(result['key'])
+                });
+            });
+        });
+    </script>
+    <style type="text/css">
+        .errorlist {
+            color: red;
+        }
+
+        .info {
+            color: #267fd9;
+        }
+
+        .error {
+            color: red;
+        }
+
+        .success {
+            color: green;
+        }
+
+        .warning {
+            color: yellow;
+        }
+    </style>
+{% endblock %}

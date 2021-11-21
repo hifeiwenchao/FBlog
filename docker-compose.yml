@@ -1,0 +1,47 @@
+version: '3.7'
+services:
+
+  redis:
+    image: redis:5.0.0
+    ports:
+      - "6379:6379"
+    volumes:
+      - ./deps/redis/conf/redis.conf:/etc/redis/redis.conf
+      - ./deps/redis/data:/data
+    command: redis-server /etc/redis/redis.conf
+    restart: always
+    networks:
+      main:
+        aliases:
+          - redis
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "1g"
+
+  mysql:
+    image: "mysql:8.0.24"
+    cap_add:
+      - SYS_NICE
+    restart: always
+    ports:
+      - "3306:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: '123456'
+      MYSQL_USER: 'cafebabe'
+      MYSQL_PASSWORD: '123456'
+    volumes:
+      - ./deps/mysql/data:/var/lib/mysql
+      - ./deps/mysql/conf/my.cnf:/etc/my.cnf
+      - ./deps/mysql/log:/var/log/mysql
+    networks:
+      main:
+        aliases:
+          - mysql
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "1g"
+
+networks:
+  main:
