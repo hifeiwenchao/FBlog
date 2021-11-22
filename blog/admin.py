@@ -1,8 +1,7 @@
 from django.contrib import admin
 
 # Register your models here.
-from django.utils.safestring import mark_safe
-
+from django import forms
 from import_export.admin import ImportExportModelAdmin
 from blog.models import About, Announcement, ArticleImg, Carousel, Friend, SiteUser, Subscription, UserInfo, Tag, \
     Article, Category, \
@@ -97,11 +96,21 @@ class AnnouncementAdmin(admin.ModelAdmin):
     )
 
 
+class ConfForm(forms.ModelForm):
+    website_number = forms.CharField(required=False)
+
+    class Meta:
+        model = Conf
+        fields = '__all__'
+
+
 @admin.register(Conf)
 class ConfAdmin(ImportExportModelAdmin):
     """
     网站配置信息
     """
+    form = ConfForm
+
     list_display = (
         'main_website',
         'website_number',

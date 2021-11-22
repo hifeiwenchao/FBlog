@@ -25,10 +25,10 @@ parser.read(config_path, encoding='utf-8')
 # See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-v%!69-+jqak^*4b+y5uz_udp-l^#ii$6w)qrm&khj2anfc25z&'
+SECRET_KEY = 'django-insecure-yeo6ev=ly7d)cz46@mssp=^b5w1fqfz3-=$4t(n=)7z&=b7*&t'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = parser.get('BASIC', 'environment') == 'development'
+DEBUG = parser.get('BASIC', 'env') == 'dev'
 
 ALLOWED_HOSTS = ['*']
 
@@ -96,7 +96,7 @@ WSGI_APPLICATION = 'fblog.wsgi.application'
 DATABASES = {
 	'default': {
 		'ENGINE': 'django.db.backends.mysql',
-		'NAME': parser.get('DB', 'name'),
+		'NAME': 'fblog',
 		'USER': parser.get('DB', 'user'),
 		'PASSWORD': parser.get('DB', 'password'),
 		'HOST': parser.get('DB', 'host'),
@@ -205,39 +205,39 @@ ADMIN_REORDER = (
 # simpleui 排序后台app导航栏
 SIMPLEUI_CONFIG = {
 	'system_keep': True,
-	'menu_display': ['文章配置', '网站配置信息', '文章订阅', '权限验证', ],
+	'menu_display': ['内容管理', '配置管理', '订阅管理', '用户管理', ],
 	'dynamic': True,
 	'menus': [{
-		'name': '文章配置',
+		'name': '内容管理',
 		'models': [{
-			'name': '文章大头图',
+			'name': '文章banner',
 			'url': '/admin/blog/articleimg'
 		}, {
-			'name': '文章',
+			'name': '文章列表',
 			'url': '/admin/blog/article'
 		}, {
-			'name': '文章类型',
+			'name': '文章分类',
 			'icon': 'fa fa-list',
 			'url': '/admin/blog/category'
 		}, {
-			'name': '标签',
+			'name': '文章标签',
 			'icon': 'fa fa-tags',
 			'url': '/admin/blog/tag'
 		}, {
-			'name': '评论',
+			'name': '评论列表',
 			'icon': 'fa fa-comments',
 			'url': '/admin/blog/comment'
 		}]
 	}, {
-		'name': '网站配置信息',
+		'name': '配置管理',
 		'models': [{
-			'name': '网站基本配置',
+			'name': '基础配置',
 			'url': '/admin/blog/conf'
 		}, {
-			'name': '首页轮播图配置',
+			'name': '首页轮播图',
 			'url': '/admin/blog/carousel'
 		}, {
-			'name': '公告',
+			'name': '网站公告',
 			'icon': 'fas fa-bullhorn',
 			'url': '/admin/blog/announcement'
 		}, {
@@ -254,13 +254,13 @@ SIMPLEUI_CONFIG = {
 			'url': '/admin/blog/about'
 		}]
 	}, {
-		'name': '文章订阅',
+		'name': '订阅管理',
 		'models': [{
-			'name': '订阅用户',
+			'name': '订阅列表',
 			'url': '/admin/blog/subscription'
 		}]
 	}, {
-		'name': '权限验证',
+		'name': '用户管理',
 		'icon': 'fas fa-user-shield',
 		'models': [{
 			'name': '用户',
@@ -271,7 +271,7 @@ SIMPLEUI_CONFIG = {
 			'icon': 'fa fa-users',
 			'url': 'auth/group/'
 		}, {
-			'name': '网站用户信息',
+			'name': '网站用户',
 			'icon': 'fa fa-users',
 			'url': '/admin/blog/siteuser'
 		}, ]
@@ -281,7 +281,7 @@ SIMPLEUI_CONFIG = {
 # simpleui本地配置
 # SIMPLEUI_LOGO：对官方css进行了某些修改以适应后台尺寸，使用个人logo时根据显示情况自行修改即可...
 SIMPLEUI_LOGO = '/static/images/logo/logo.png'
-SIMPLEUI_HOME_TITLE = 'DBlog后台管理'
+SIMPLEUI_HOME_TITLE = 'FBlog后台管理'
 SIMPLEUI_ANALYSIS = False
 SIMPLEUI_LOADING = False
 SIMPLEUI_DEFAULT_ICON = True
@@ -295,7 +295,7 @@ admin.AdminSite.site_title = SIMPLEUI_HOME_TITLE
 LOGIN_REDIRECT_URL = '/blog/'
 
 # session设置
-SESSION_COOKIE_AGE = 86400  # Session的cookie失效日期（秒）
+SESSION_COOKIE_AGE = 86400*7  # Session的cookie失效日期（秒）
 SESSION_EXPIRE_AT_BROWSER_CLOSE = True  # 是否关闭浏览器使得Session过期
 
 # 字母验证码
