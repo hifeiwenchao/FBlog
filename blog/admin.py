@@ -125,6 +125,7 @@ class ConfAdmin(ImportExportModelAdmin):
             'fields': (
                 'main_website',
                 'website_number',
+                'donate_img',
                 'website_logo'
             )
         }),
@@ -140,16 +141,6 @@ class ConfAdmin(ImportExportModelAdmin):
                 'git'
             )
         }),
-    )
-
-
-@admin.register(Pay)
-class PayAdmin(admin.ModelAdmin):
-    """
-    收款图
-    """
-    list_display = (
-        'payimg',
     )
 
 

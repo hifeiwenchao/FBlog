@@ -20,6 +20,11 @@ class Command(BaseCommand):
         conn = pymysql.connect(user=user, password=password, host=host, port=int(port))
         try:
             cursor = conn.cursor()
+
+            if settings.DEBUG:
+                clean = input(f'Clean the database {name}? [y/N]:') or 'N'
+                if clean.upper() == 'Y':
+                    cursor.execute(f'DROP DATABASE IF EXISTS {name}')
             cursor.execute(f'CREATE DATABASE IF NOT EXISTS {name}  DEFAULT CHARSET utf8mb4')
             conn.commit()
         finally:

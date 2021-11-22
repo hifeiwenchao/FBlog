@@ -15,13 +15,10 @@ def sidebar(request):
 	tag_list = Tag.objects.all()
 
 	# 评论
-	comment = Comment.objects.all().order_by('-create_time')[0:6]
+	comment = Comment.objects.all().order_by('-created_at')[0:6]
 
 	# 友链
 	friends = Friend.objects.all()
-
-	# 捐助收款图
-	payimg = Pay.objects.all()[0:2]
 
 	# 轮播图
 	carousel = Carousel.objects.all()
@@ -36,7 +33,6 @@ def sidebar(request):
 		'tag_list': tag_list,
 		'comment_list': comment,
 		'friends': friends,
-		'payimg_list': payimg,
 		'carousel_list': carousel,
 		'announcement_list': announcement,
 	}
@@ -54,6 +50,7 @@ def website_conf(request):
 			'website_author': conf.website_author,
 			'website_author_link': conf.website_author_link,
 			'email': conf.email,
+			'donate_img': conf.donate_img,
 			'website_number': conf.website_number,
 			'git': conf.git,
 			'website_logo': conf.website_logo

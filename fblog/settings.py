@@ -245,10 +245,6 @@ SIMPLEUI_CONFIG = {
 			'icon': 'fa fa-link',
 			'url': '/admin/blog/friend'
 		}, {
-			'name': '收款图',
-			'icon': 'fa fa-coffee',
-			'url': '/admin/blog/pay'
-		}, {
 			'name': "关于",
 			'icon': 'fa fa-id-card',
 			'url': '/admin/blog/about'

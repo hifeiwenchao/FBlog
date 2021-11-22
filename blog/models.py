@@ -13,8 +13,8 @@ from mdeditor.fields import MDTextField
 class BaseModel(models.Model):
 	objects = models.Manager()
 
-	created_at = models.DateTimeField(auto_now_add=True, verbose_name='创建时间')
-	updated_at = models.DateTimeField(auto_now=True, null=True, verbose_name='更新时间')
+	created_at = models.DateTimeField(auto_now_add=True, verbose_name='创建时间', db_index=True)
+	updated_at = models.DateTimeField(auto_now=True, null=True, verbose_name='更新时间', db_index=True)
 
 	class Meta:
 		abstract = True
@@ -95,6 +95,7 @@ class Conf(BaseModel):
 	website_number = models.CharField(max_length=100, verbose_name='备案号', default='')
 	git = models.CharField(max_length=100, verbose_name='git链接', default='')
 	website_logo = models.ImageField(upload_to='logo', verbose_name='网站logo', default='')
+	donate_img = models.ImageField(upload_to='donate', verbose_name='捐助二维码', default='')
 
 	class Meta:
 		verbose_name = '网站配置'
@@ -184,7 +185,7 @@ class Article(BaseModel):
 	content = MDTextField(blank=True, null=True, verbose_name='文章正文')
 	digest = models.TextField(blank=True, null=True, verbose_name='文章摘要')
 	author = models.ForeignKey(settings.AUTH_USER_MODEL, verbose_name='作者', on_delete=models.CASCADE)
-	view = models.BigIntegerField(default=0, verbose_name='阅读数')
+	view = models.BigIntegerField(default=0, verbose_name='阅读数', db_index=True)
 	comment = models.BigIntegerField(default=0, verbose_name='评论数')
 	picture = models.CharField(max_length=300, blank=True, null=True, verbose_name="url(标题图链接)")
 	tag = models.ManyToManyField(Tag)  # 标签

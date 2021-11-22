@@ -25,7 +25,7 @@
                 </div>
                 {# 头像 #}
                 <a class="notransition" href="{% url "blog:about" %}" data-pjax-state="">
-                    <img class="headportrait" src="{{ avatar_link }}">
+                    <img class="headportrait" src="{{ avatar_link }}" alt="avatar">
                 </a>
             </div>
             {# 组件 #}
@@ -36,7 +36,7 @@
                 <span>Github</span>
             </div>
             <div>
-                <a class="benbo" href="{{ git }}/DBlog" target="_blank">
+                <a class="benbo" href="{{ git }}/FBlog" target="_blank">
                     <i class="el-download-alt"></i>
                 </a>
                 <span>博客源码</span>
@@ -185,7 +185,7 @@
         <h4 class="index-title"><i class="el-paper-clip"></i>友情链接
             <small>Links -></small>
             <a style="float: none !important;"
-               href="https://mail.qq.com/cgi-bin/qm_share?t=qm_mailme&amp;email=2186656812@qq.com">
+               href="mailto:{{ email }}">
                 <small><i class="el el-envelope"></i>申请</small>
             </a>
         </h4>
@@ -199,25 +199,12 @@
     <!--支持server-->
     <div class="side-link animation-div">
         <h4 class="index-title"><i class="el el-thumbs-up"></i>咖啡续命
-            <small>(WeChatPay / AliPay)
-{#                <a href="javascript:;">#}
-{#                    <img src="/static/images/icon/zhifu.png"#}
-{#                         style="margin-top: -2.5px; display: block; transform: scale(0.55) translateX(-6px) translateY(-6px); margin-right: 5px;">#}
-{#                </a>#}
-            </small>
+            <small>(AliPay)</small>
         </h4>
-        <table>
-            <tr>
-                {% for payimg in payimg_list %}
-                    <td>
-                        <a href="/media/{{ payimg.payimg }}">
-                            <img style="width: 135px; height: 150px; margin-top: 8px; margin-left: 30px"
-                                 src="/media/{{ payimg.payimg }}">
-                        </a>
-                    </td>
-                {% endfor %}
-            </tr>
-        </table>
+        <div>
+            <img style="width: 180px; height: 180px; margin-top: 8px; margin-left: 30px"
+                 src="/media/{{ donate_img }}" alt="alipay">
+        </div>
     </div>
 </aside>
 
