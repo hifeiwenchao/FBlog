@@ -85,9 +85,9 @@ class Conf(BaseModel):
 	网站配置信息
 	"""
 	main_website = models.CharField(max_length=64, verbose_name='主网站', default="")
-	name = models.CharField(max_length=8, verbose_name='关注我_名称', default="")
-	chinese_description = models.CharField(max_length=30, verbose_name='关注我_中文描述', default='')
-	english_description = models.TextField(max_length=100, verbose_name='关注我_英文描述', default='')
+	name = models.CharField(max_length=32, verbose_name='关注我_名称', default="")
+	chinese_description = models.CharField(max_length=128, verbose_name='关注我_中文描述', default='')
+	english_description = models.TextField(max_length=128, verbose_name='关注我_英文描述', default='')
 	avatar = models.ImageField(upload_to='avatar',  verbose_name='我的头像')
 	website_author = models.CharField(max_length=20, verbose_name='网站作者', default='')
 	website_author_link = models.CharField(max_length=200, verbose_name='网站作者链接', default='')
@@ -95,19 +95,6 @@ class Conf(BaseModel):
 	website_number = models.CharField(max_length=100, verbose_name='备案号', default='')
 	git = models.CharField(max_length=100, verbose_name='git链接', default='')
 	website_logo = models.ImageField(upload_to='logo', verbose_name='网站logo', default='')
-
-	@staticmethod
-	def fetch_all_site_info():
-		# 获取站点信息
-		site_info = cache.get(f"site_info")
-		if not site_info:
-			# 查询最后一条站点信息
-			site_info = Conf.objects.last()
-			# 保存站点信息存到缓存redis中 缓存60*2
-			if site_info:
-				# 如果查询到了站点信息就缓存
-				cache.set("site_info", site_info, 120)
-		return site_info
 
 	class Meta:
 		verbose_name = '网站配置'
