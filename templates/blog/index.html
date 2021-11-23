@@ -1,11 +1,11 @@
 {% extends "blog/base.html" %}
 
 {% block css %}
-    <link rel="stylesheet" href="/static/css/swiper-bundle.min.css">
+    <link rel="stylesheet" href={% static 'css/swiper-bundle.min.css' %}>
 {% endblock %}
 
 {% block js %}
-    <script src="/static/js/swiper-bundle.min.js"></script>
+    <script src={% static 'js/swiper-bundle.min.js' %}></script>
 {% endblock %}
 
 {% block content %}

@@ -20,37 +20,37 @@
 
     <!--CSS-->
     {% block css %}{% endblock %}
-    <link rel="preload stylesheet" as="style" type="text/css" href="/static/css/public.css"/>
-    <link rel="stylesheet" type="text/css" href="/static/css/default.css"/>
-    <link rel="stylesheet" type="text/css" href="/static/css/animation.css"/>
-    <link rel="stylesheet" type="text/css" href="/static/css/skin_1.min.css" title="qingxin"/>
-    <link rel="stylesheet" type="text/css" href="/static/css/skin_2.min.css" title="jianyue"/>
-    <link rel="stylesheet" type="text/css" href="/static/css/skin_3.min.css" title="qingshuang"/>
-    <link rel="stylesheet" type="text/css" href="/static/css/skin_4.min.css" title="anhei"/>
-    <link rel="stylesheet" type="text/css" href="/static/css/font-icon.css"/>
+    <link rel="preload stylesheet" as="style" type="text/css" href={% static 'css/public.css' %}/>
+    <link rel="stylesheet" type="text/css" href={% static 'css/default.css' %}/>
+    <link rel="stylesheet" type="text/css" href={% static 'css/animation.css' %}/>
+    <link title="qingxin" rel="stylesheet" type="text/css" href={% static 'css/skin_1.min.css' %}/>
+    <link title="jianyue" rel="stylesheet" type="text/css" href={% static 'css/skin_2.min.css' %}/>
+    <link title="qingshuang" rel="stylesheet" type="text/css" href={% static 'css/skin_3.min.css' %}/>
+    <link title="anhei" rel="stylesheet" type="text/css" href={% static 'css/skin_4.min.css' %}/>
+    <link rel="stylesheet" type="text/css" href={% static 'css/font-icon.css' %}/>
 
     <!--JS-->
     {% block js %}{% endblock %}
-    <script type="text/javascript" src="/static/js/jquery.2.1.4.min.js"></script>
-    <script type="text/javascript" src="/static/js/my.js"></script>
-    <script type="text/javascript" src="/static/js/superbg.min.js"></script>
-    <script type="text/javascript" src="/static/js/superbg-custom.js"></script>
-    <script type="text/javascript" src="/static/js/tooltip.js"></script>
-    <script type="text/javascript" src="/static/js/layer/layer.js"></script>
+    <script type="text/javascript" src={% static 'js/jquery.2.1.4.min.js' %}></script>
+    <script type="text/javascript" src={% static 'js/my.js' %}></script>
+    <script type="text/javascript" src={% static 'js/superbg.min.js' %}></script>
+    <script type="text/javascript" src={% static 'js/superbg-custom.js' %}></script>
+    <script type="text/javascript" src={% static 'js/tooltip.js' %}></script>
+    <script type="text/javascript" src={% static 'js/layer/layer.js' %}></script>
     <script>
-        $("html").append("<div class='jiazai'><img src='/static/images/icon/loading.gif' alt=''/><span>Loading,please wait...</span></div>")
+        $("html").append("<div class='jiazai'><img src={% static 'images/icon/loading.gif' %} alt=''/><span>Loading,please wait...</span></div>")
     </script>
     <!--[if lte IE 8]>
     <script async>window.location.href = 'http://cdn.dmeng.net/upgrade-your-browser.html?referrer=' + location.href;</script>
     <![endif]-->
     {# 百度统计 #}
     <script>
-      var _hmt = _hmt || [];
-      (function() {
-        var hm = document.createElement("script");
-        hm.src = "https://hm.baidu.com/hm.js?0e36d007cc46eb4409252913c3aa5212";
-        var s = document.getElementsByTagName("script")[0];
-        s.parentNode.insertBefore(hm, s);
+        let _hmt = _hmt || [];
+        (function() {
+            let hm = document.createElement("script");
+            hm.src = "https://hm.baidu.com/hm.js?0e36d007cc46eb4409252913c3aa5212";
+            let s = document.getElementsByTagName("script")[0];
+            s.parentNode.insertBefore(hm, s);
       })();
     </script>
 

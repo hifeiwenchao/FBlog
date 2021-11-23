@@ -162,7 +162,7 @@ STATIC_URL = '/static/'
 # 收集静态文件：python manage.py collectstatic STATIC_ROOT是生产环境中NGINX需要配置的静态资源文件目录
 STATIC_ROOT = parser.get('STATICFILES', 'static_root') or BASE_DIR / 'static'
 STATICFILES_DIRS = (
-	BASE_DIR / 'templates' / 'static',
+	BASE_DIR / 'templates/static',
 )
 
 MEDIA_URL = '/media/'

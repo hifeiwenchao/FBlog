@@ -1,19 +1,11 @@
 <header class="myheader">
-    {# 信息弹窗提示，逻辑不是很好，暂停使用 #}
-{#    {% if messages %}#}
-{#        <script type="text/javascript">#}
-{#            {% for msg in messages %}#}
-{#                alert('{{ msg.message }}');#}
-{#            {% endfor %}#}
-{#        </script>#}
-{#    {% endif %}#}
     <div class="top">
         <!--头像左边部分-->
         <div class="top-left">
             {# logo #}
             <div class="logo">
                 <a href="{% url "blog:index" %}">
-                    <img src="/media/{{ website_logo }}" alt="logo"/>
+                    <img src="{{ MEDIA_URL }}{{ website_logo }}" alt="logo"/>
                 </a>
             </div>
             {# 滚动信息 #}
@@ -37,7 +29,7 @@
                 <li><a href="{% url "blog:index" %}">首页</a></li>
                 <li><a href="{% url "blog:list" %}">博客</a></li>
                 <li class='drop'>
-                    <a href="JavaScript:;">分类<i class='el-chevron-down'></i></a>
+                    <a href="JavaScript:">分类<i class='el-chevron-down'></i></a>
                     <div class="drop-nav orange-text">
                         <ul>
                             {% for category in category_list %}
@@ -53,7 +45,7 @@
                 {% if request.session.user_name %}
                     {# 个人信息 #}
                     <li class='drop_user' style="float: right;">
-                        <a href="JavaScript:;"><i class="el el-user"></i>{{ request.session.user_name }}</a>
+                        <a href="JavaScript:"><i class="el el-user"></i>{{ request.session.user_name }}</a>
                         <div class="drop_user-nav orange-text">
                             <ul>
                                 <li><a href='{% url "blog:edituser" id=request.session.user_id %}'>个人信息</a></li>
@@ -124,7 +116,7 @@
                 <li><a href="{% url "blog:index" %}">首页</a></li>
                 <li><a href="{% url "blog:list" %}">博客</a></li>
                 <li class='mob-drop'>
-                    <a href="JavaScript:;">分类</a>
+                    <a href="JavaScript:">分类</a>
                     <ul class="mob-dropmenu">
                         {% for category in category_list %}
                             <li><a href="{% url "blog:category" name=category.name %}">{{ category.name }}</a></li>
@@ -136,7 +128,7 @@
                 {% if request.session.user_name %}
                     {# 个人信息 #}
                     <li class='drop_user'>
-                        <a href="JavaScript:;"><i class="el el-user"></i>{{ request.session.user_name }}</a>
+                        <a href="JavaScript:"><i class="el el-user"></i>{{ request.session.user_name }}</a>
                         <div class="drop_user-nav orange-text">
                             <ul>
                                 <li><a href='{% url "blog:edituser" id=request.session.user_id %}'>个人信息</a></li>
@@ -180,7 +172,7 @@
     </div>
 
     <!--换肤--->
-    <script src="/static/js/skin.js"></script>
+    <script src={% static 'js/skin.js' %}></script>
     <div class="select-skin">
         <div class="skin-btn">
             <a href="javascript:void(0);" class="skin-btn-open">换<br>肤</a>
