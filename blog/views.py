@@ -11,8 +11,7 @@ from django.shortcuts import get_object_or_404, redirect, render
 from django.urls import reverse
 
 from blog.forms.comment import CommentForm
-from blog.models import About, SiteUser, Subscription
-from blog.models import Article, Category, Tag, UserInfo
+from blog.models import About, SiteUser, Subscription, Conf, Article, Category, Tag, UserInfo
 from blog.forms.subscription import SubscriptionForm
 from blog.forms.user import EditUserInfo, ProfileForm, RegisterForm, RestCodeForm, RestPwdForm, UserForm
 from fblog import settings
@@ -487,17 +486,19 @@ def send_stu_email(sender, created, **kwargs):
 	"""
 	if created:
 		blog = Article.objects.filter()
-		if blog:
+		conf = Conf.objects.first()
+		if blog and conf:
 			link_id = blog.count()
 			title = blog.values('title').first().get('title').strip()
 			# 文章链接
 			# 本地调试时请将 settings.website_author_link 换成 http://127.0.0.1:端口号
-			link = settings.website_author_link + '/blog/detail/{id}'.format(id=link_id)
+			link = conf.main_website + f'/blog/detail/{link_id}'
 			_email = Subscription.objects.filter().values_list('email', flat=True)
 			if _email:
+				# todo
 				email_list = _email[:99999999]
 				email_title = "文章订阅推送"
-				email_body = "你订阅的 %s: %s 的博客发布新文章啦，快点击链接查阅吧\n文章：%s\n链接：%s" % (settings.website_author, settings.website_author_link, title, link)
+				email_body = f"你订阅的 {conf.website_author}: {conf.main_website} 的博客发布新文章啦，快点击链接查阅吧\n文章：{title}\n链接：{link}"
 				try:
 					send_mail(
 						email_title, email_body, settings.EMAIL_HOST_USER, email_list,

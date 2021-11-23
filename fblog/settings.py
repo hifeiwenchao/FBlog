@@ -159,14 +159,15 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.2/howto/static-files/
 STATIC_URL = '/static/'
-# 当你关闭DEBUG模式时，需要打开STATIC_ROOT注释，同时注释掉STATICFILES_DIRS，然后执行命令收集静态文件：python manage.py collectstatic
-# STATIC_ROOT = BASE_DIR / 'static'
+# 收集静态文件：python manage.py collectstatic STATIC_ROOT是生产环境中NGINX需要配置的静态资源文件目录
+STATIC_ROOT = parser.get('STATICFILES', 'static_root') or BASE_DIR / 'static'
 STATICFILES_DIRS = (
-	BASE_DIR / 'static',
+	BASE_DIR / 'templates' / 'static',
 )
 
 MEDIA_URL = '/media/'
-MEDIA_ROOT = BASE_DIR / 'static/media'
+# 和STATIC_ROOT一样 生产环境中需要通过NGINX访问media的资源文件
+MEDIA_ROOT = parser.get('STATICFILES', 'media_root') or BASE_DIR / 'media'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field

@@ -121,5 +121,6 @@ dmypy.json
 #/deps/redis/data
 #/deps/mongo/db
 #/deps/flower/flower
-/static/media
+/static
+/media
 config.ini

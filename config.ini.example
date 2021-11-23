@@ -19,3 +19,7 @@ user=aries
 password=
 port=
 use_ssl=
+
+[STATICFILES]
+static_root=/home/feiwenchao/projects/depends/setup/nginx/static
+media_root=/home/feiwenchao/projects/depends/setup/nginx/media
