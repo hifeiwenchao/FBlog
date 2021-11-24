@@ -5,7 +5,7 @@
 {% endblock %}
 
 {% block css %}
-    <link href="/static/layui/css/layui.css" rel="stylesheet"/>
+    <link rel="stylesheet" href={% static 'layui/css/layui.css' %}/>
     <style>
         /* disable layui style */
         .layui-card-header {
@@ -52,5 +52,5 @@
 {% endblock %}
 
 {% block js %}
-    <script src="/static/layui/layui.js"></script>
+    <script src={% static 'layui/layui.js' %}></script>
 {% endblock %}

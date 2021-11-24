@@ -5,4 +5,4 @@ Allow: /blog/tag/
 Allow: /blog/category/
 Allow: /blog/archive/
 Allow: /blog/getComment/
-Sitemap: http://www.feiwenchao.me/sitemap.xml
+Sitemap: https://www.feiwenchao.me/sitemap.xml

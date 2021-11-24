@@ -1,29 +1,26 @@
 <!DOCTYPE html>
-<html class="no-js">
+<html class="no-js" lang="en">
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
 
     <title>404 page not found</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    <link rel="stylesheet" href="/static/404/style.css">
-    <link href="/static/404/css" rel="stylesheet" type="text/css">
-    <script type="text/javascript" src="/static/404/jquery-1.11.0.min.js"></script>
+    <link rel="stylesheet" href={% static '404/style.css' %}>
+    <link rel="stylesheet" href={% static '404/css' %}>
+    <script type="text/javascript" src={% static '404/jquery-1.11.0.min.js' %}></script>
 
     <script>
         $(document).ready(function () {
 
+            let plane = $('#plane');
+            const startPos = -700;
+
             function fly() {
                 plane.css('left', startPos);
                 plane.animate({left: 2600}, 32000, 'linear')
-            };
-
-            var screenWidth = $(document).width();
-            var startPos = -700;
-            var plane = $('#plane')
-
+            }
             fly();
-
             setInterval(function () {
                 fly();
             }, 34000);
@@ -36,11 +33,11 @@
 <body style="">
 <div class="container">
     <div id="plane" style="left: 832.644px;">
-        <span><img src="/static/404/tail-end.png"></span>
+        <span><img src={% static '404/tail-end.png' %}></span>
 
         <span class="tail">Sorry, we can't find what you're looking for</span>
 
-        <span><img src="/static/404/plane.png"></span>
+        <span><img src={% static '404/plane.png' %}></span>
     </div>
 
     <div class="centerContent clearfix">
@@ -59,11 +56,11 @@
         </div>
         <div class="footer fl">
             <div class="social fl">
-                <a href="#"><img src="/static/404/twitter.png"></a>
-                <a href="#"><img src="/static/404/google.png"></a>
-                <a href="#"><img src="/static/404/github.png"></a>
-                <a href="#"><img src="/static/404/email.png"></a>
-                <a href="#"><img src="/static/404/weibo.png"></a>
+                <a href="#"><img src={% static '404/twitter.png' %}></a>
+                <a href="#"><img src={% static '404/google.png' %}></a>
+                <a href="#"><img src={% static '404/github.png' %}></a>
+                <a href="#"><img src={% static '404/email.png' %}></a>
+                <a href="#"><img src={% static '404/weibo.png' %}></a>
             </div>
             <div class="credits">Copyright © 2021-2022 - <a href="{% url "blog:index" %}"><strong>Feiwenchao's blog</strong></a> All Rights Reserved.</div>
 

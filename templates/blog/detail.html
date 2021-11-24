@@ -11,8 +11,8 @@
 {% endblock %}
 
 {% block css %}
-    <link rel="stylesheet" href="/static/css/markdown.css">
-    <link rel="stylesheet" href="/static/prism/prism.css">
+    <link rel="stylesheet" href={% static 'css/markdown.css' %}>
+    <link rel="stylesheet" href={% static 'prism/prism.css' %}>
 {% endblock %}
 
 {% block content %}
@@ -126,9 +126,9 @@
 {% include 'blog/component/auto_push_baidu.html' %}
 
 {% block js %}
-    <script src="/static/js/jquery.2.1.4.min.js"></script>
-    <script src="/static/prism/prism.js" charset="utf-8"></script>
-    <script src="/static/prism/clipboard.min.js"></script>
+    <script src={% static 'js/jquery.2.1.4.min.js' %}></script>
+    <script charset="utf-8" src={% static 'prism/prism.js' %}></script>
+    <script src={% static 'prism/clipboard.min.js' %}></script>
     <script async type="text/javascript"
             src="http://cdjs.cloudflare.com/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <script type="text/x-mathjax-config">

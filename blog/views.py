@@ -491,7 +491,6 @@ def send_stu_email(sender, created, **kwargs):
 			link_id = blog.count()
 			title = blog.values('title').first().get('title').strip()
 			# 文章链接
-			# 本地调试时请将 settings.website_author_link 换成 http://127.0.0.1:端口号
 			link = conf.main_website + f'/blog/detail/{link_id}'
 			_email = Subscription.objects.filter().values_list('email', flat=True)
 			if _email:
